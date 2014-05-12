@@ -48,6 +48,7 @@
     <div class="navbar">
       <?php if ($main_menu): ?>
 
+      <div class="container">
         <?php endif; ?>
         <?php if ($page['search_box']): ?>
         <div id="nav-search" class="nav-search"> <?php print render($page['search_box']); ?> </div>
@@ -65,6 +66,7 @@
             <?php print render($page['navigation']); ?>
             <?php endif; ?>
           </nav>
+		</div>
         <?php endif; ?>
         <?php endif; ?>
         <?php if ($main_menu): ?>
