@@ -1,5 +1,5 @@
 <?php
-function open_framework_form_system_theme_settings_alter(&$form, &$form_state) {
+function opened_framework_form_system_theme_settings_alter(&$form, &$form_state) {
   
   // Responsive Behavior
   $form['responsive_container'] = array(
@@ -136,11 +136,11 @@ function open_framework_form_system_theme_settings_alter(&$form, &$form_state) {
   );
   
   // Attach custom submit handler to the form
-  $form['#submit'][] = 'open_framework_settings_submit';
-  $form['#validate'][] = 'open_framework_settings_validate';
+  $form['#submit'][] = 'opened_framework_settings_submit';
+  $form['#validate'][] = 'opened_framework_settings_validate';
 }
 
-function open_framework_settings_submit($form, &$form_state) {
+function opened_framework_settings_submit($form, &$form_state) {
   $settings = array();
   // Get the previous value
   $previous = 'public://' . $form['background_container']['body_bg_path']['#default_value'];
@@ -160,7 +160,7 @@ function open_framework_settings_submit($form, &$form_state) {
  
 }
 
-function open_framework_settings_validate($form, &$form_state) {
+function opened_framework_settings_validate($form, &$form_state) {
   $validators = array('file_validate_is_image' => array());
   // Check for a new uploaded logo.
   $file = file_save_upload('body_bg_upload', $validators);

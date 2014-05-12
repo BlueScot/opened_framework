@@ -1,5 +1,5 @@
 <?php
-function open_framework_preprocess_html(&$vars) {
+function opened_framework_preprocess_html(&$vars) {
   // theme option variables
   $vars['content_order_classes'] = theme_get_setting('content_order_classes'); 
   $vars['front_heading_classes'] = theme_get_setting('front_heading_classes'); 
@@ -11,14 +11,14 @@ function open_framework_preprocess_html(&$vars) {
   $vars['body_bg_path'] = theme_get_setting('body_bg_path'); 
 }
 
-function open_framework_js_alter(&$javascript) {
+function opened_framework_js_alter(&$javascript) {
   // Update jquery version for non-administration pages  
   if (arg(0) != 'admin' && arg(0) != 'panels' && arg(0) != 'ctools'  && !(module_exists('jquery_update'))) {
-    $jquery_file = drupal_get_path('theme', 'open_framework') . '/js/jquery-1.9.1.min.js';
+    $jquery_file = drupal_get_path('theme', 'opened_framework') . '/js/jquery-1.9.1.min.js';
     $jquery_version = '1.9.1';
-    $migrate_file = drupal_get_path('theme', 'open_framework') . '/js/jquery-migrate-1.2.1.min.js';
+    $migrate_file = drupal_get_path('theme', 'opened_framework') . '/js/jquery-migrate-1.2.1.min.js';
     $migrate_version = '1.2.1';
-	$form_file = drupal_get_path('theme', 'open_framework') . '/js/jquery-form-3.31.0.min.js';
+	$form_file = drupal_get_path('theme', 'opened_framework') . '/js/jquery-form-3.31.0.min.js';
     $form_version = '3.31.0'; 
     $javascript['misc/jquery.js']['data'] = $jquery_file;
     $javascript['misc/jquery.js']['version'] = $jquery_version;
@@ -39,7 +39,7 @@ function open_framework_js_alter(&$javascript) {
   }
 }
 
-function open_framework_preprocess_page(&$vars) { 
+function opened_framework_preprocess_page(&$vars) { 
   // Add page template suggestions based on the aliased path. For instance, if the current page has an alias of about/history/early, we'll have templates of:
   // page-about-history-early.tpl.php, page-about-history.tpl.php, page-about.tpl.php
   // Whichever is found first is the one that will be used.
@@ -88,7 +88,7 @@ function open_framework_preprocess_page(&$vars) {
   
 }
 
-function open_framework_preprocess_block(&$vars) {
+function opened_framework_preprocess_block(&$vars) {
   // Count number of blocks in a given theme region
 $vars['block_count'] = count(block_list($vars['block']->region));
 }
@@ -103,7 +103,7 @@ $vars['block_count'] = count(block_list($vars['block']->region));
 * TRUE if the region has at least one block. FALSE if it doesn't.
 */
 
-function open_framework_region_has_block($region) {
+function opened_framework_region_has_block($region) {
   $number_of_blocks = count(block_list($region));
   if ($number_of_blocks > 0) {
     return TRUE;
@@ -129,7 +129,7 @@ function open_framework_region_has_block($region) {
 * The span value for the block at this location and region
 */
 
-function open_framework_get_span($block_count, $block_id, $count_sidebars) {
+function opened_framework_get_span($block_count, $block_id, $count_sidebars) {
   // @petechen (6.27.12) This method of applying a value to span assumes that there
   // is at least 1 block. If there are no blocks, you end up with a calculation
   // dividing by 0 generating a php error. Suggest the following change:
@@ -144,11 +144,11 @@ function open_framework_get_span($block_count, $block_id, $count_sidebars) {
   if ($count_sidebars) {
     // we assume that the left and right regions have a span of 3
     // if present, we remove that much from the available width
-    if (open_framework_region_has_block('sidebar_first')) {
+    if (opened_framework_region_has_block('sidebar_first')) {
       $available_width = $available_width - 0;
     }
 
-    if (open_framework_region_has_block('sidebar_second')) {
+    if (opened_framework_region_has_block('sidebar_second')) {
       $available_width = $available_width - 0;
     }
   }
@@ -214,7 +214,7 @@ function open_framework_get_span($block_count, $block_id, $count_sidebars) {
 /**
  * Returns HTML for status and/or error messages, grouped by type.
  */
-function open_framework_status_messages($variables) {
+function opened_framework_status_messages($variables) {
   $display = $variables['display'];
   $output = '';
 
@@ -267,7 +267,7 @@ function search_preprocess_block(&$variables) {
   }
 }
 
-function open_framework_form_alter(&$form, &$form_state, $form_id) {
+function opened_framework_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'search_block_form') {
     $form['search_block_form']['#title_display'] = 'invisible';
     $form['search_block_form']['#attributes']['class'][] = 'input-medium search-query';
@@ -276,12 +276,12 @@ function open_framework_form_alter(&$form, &$form_state, $form_id) {
     $form['actions']['submit']['#attributes']['alt'] = t('Search');
     unset($form['actions']['submit']['#value']);    
     $form['actions']['submit']['#type'] = 'image_button';
-    $form['actions']['submit']['#src'] = drupal_get_path('theme', 'open_framework') . '/images/searchbutton.png';
+    $form['actions']['submit']['#src'] = drupal_get_path('theme', 'opened_framework') . '/images/searchbutton.png';
   }
 }
 
 /* Returns HTML for primary and secondary local tasks. */
-function open_framework_menu_local_tasks(&$vars) {
+function opened_framework_menu_local_tasks(&$vars) {
   $output = '';
 
   if ( !empty($vars['primary']) ) {
@@ -302,7 +302,7 @@ function open_framework_menu_local_tasks(&$vars) {
 }
 
 /* Returns HTML for primary and secondary local task. */
-function open_framework_menu_local_task($vars) {
+function opened_framework_menu_local_task($vars) {
   $link = $vars['element']['#link'];
   $link_text = $link['title'];
   $classes = array();
@@ -325,7 +325,7 @@ function open_framework_menu_local_task($vars) {
   return '<li class="' . implode(' ', $classes) . '">' . l($link_text, $link['href'], $link['localized_options']) . "</li>\n";
 }
 
-function open_framework_menu_tree(&$vars) {
+function opened_framework_menu_tree(&$vars) {
   return '<ul class="menu nav">' . $vars['tree'] . '</ul>';
 }
 
@@ -338,11 +338,11 @@ function open_framework_menu_tree(&$vars) {
  *       not just the one in the navigation
  */
 
-function open_framework_menu_link(array $vars) {
+function opened_framework_menu_link(array $vars) {
 
   $element = $vars['element'];
 
-  if (open_framework_is_in_nav_menu($element)) {
+  if (opened_framework_is_in_nav_menu($element)) {
     $sub_menu = '';
 
     if ($element['#below']) {
@@ -445,7 +445,7 @@ function _bootstrap_local_tasks($tabs = FALSE) {
 /*
  *  Find out if an element (a menu link) is a link displayed in the
  *  navigation region for the user. We return true by default if this is a 
- *  menu link in the main-menu. Open Framework treats the main-menu
+ *  menu link in the main-menu. opened Framework treats the main-menu
  *  as being in the navigation by default.
  *  We are using the theming functions to figure out the block IDs.
  *  The block IDs aren't passed to this function, but theming function names are,
@@ -453,7 +453,7 @@ function _bootstrap_local_tasks($tabs = FALSE) {
  *
  */
 
-function open_framework_is_in_nav_menu($element) {
+function opened_framework_is_in_nav_menu($element) {
 
   // #theme holds one or more suggestions for theming function names for the link
   // simplify things by casting into an array
@@ -486,7 +486,7 @@ function open_framework_is_in_nav_menu($element) {
     $ids = array_keys($blocks);
 
     // translate the ids into function names for comparison purposes
-    $nav_theming_functions = array_map('open_framework_block_id_to_function_name', $ids);
+    $nav_theming_functions = array_map('opened_framework_block_id_to_function_name', $ids);
 
   }
 
@@ -512,7 +512,7 @@ function open_framework_is_in_nav_menu($element) {
  *  Convert a block id to a theming function name
  */
 
-function open_framework_block_id_to_function_name ($id) {
+function opened_framework_block_id_to_function_name ($id) {
   // if a system block, remove 'system_'
   $id = str_replace('system_', '', $id);
 
@@ -540,7 +540,7 @@ function open_framework_block_id_to_function_name ($id) {
  *  Show or hide breadcrumb based on theme setting selection
  */
  
-function open_framework_breadcrumb(&$variables) {
+function opened_framework_breadcrumb(&$variables) {
   $output = '';
   $breadcrumb = $variables['breadcrumb'];
   $show_breadcrumb = theme_get_setting('breadcrumb_classes');
