@@ -4,7 +4,7 @@ Authors: BlueScot
 
 -- SUMMARY -- 
 
-Opened Framework is a built off a fork of Stanford's Open Framework with the purpose of upgrading its Bootstrap 2.3.1 core to Bootstrap 3.
+Opened Framework is a fork of Stanford's Open Framework with the purpose of upgrading its Bootstrap 2.3.1 core to Bootstrap 3.
 
 -- REQUIREMENTS --
 
