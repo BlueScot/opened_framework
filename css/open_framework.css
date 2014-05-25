@@ -302,6 +302,10 @@ ul.primary { margin:1.5em 0 .2em; }
 	.site-sidebar-first .block.well { width:37%; width:-moz-calc(50% - 60px); width:-webkit-calc(50% - 60px); width:-o-calc(50% - 60px); width:calc(50% - 60px); }
 }
 
+/* modified collapse button 
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0)}
+.icon-bar{display:block;width:22px;height:2px;border-radius:1px}*/
+
 /* landscape phone to portrait tablet */
 @media (max-width: 767px) {
 .nav-search { float:right; margin:0; padding:3px 0; }

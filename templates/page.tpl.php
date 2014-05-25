@@ -1,6 +1,6 @@
 <a href="#main" class="element-invisible element-focusable"><?php print t('Skip to content'); ?></a>
 <?php if ($main_menu): ?>
-<a href="#main-nav" class="element-invisible element-focusable" data-target=".nav-collapse" data-toggle="collapse"><?php print t('Skip to navigation'); ?></a>
+<a href="#main-nav" class="element-invisible element-focusable" data-target="#menu-nav-collapse" data-toggle="collapse"><?php print t('Skip to navigation'); ?></a>
 <?php endif; ?>
 <!-- /#skipnav -->
 <?php if ((($user->uid) && ($page['admin_shortcuts'])) || (($user->uid) && ($secondary_nav))): ?>
@@ -45,34 +45,36 @@
 <?php if (($main_menu) || ($page['search_box'])): ?>
 <div id="main-menu" class="clearfix site-main-menu">
   <div class="container">
-    <div class="navbar">
+    <nav class="navbar navbar-default" role="navigation">
       <?php if ($main_menu): ?>
 
-      <div class="container">
+      <div class="container-fluid">
+	  <div class="navbar-header">
         <?php endif; ?>
         <?php if ($page['search_box']): ?>
-        <div id="nav-search" class="nav-search"> <?php print render($page['search_box']); ?> </div>
+        <div id="nav-search" class="navbar-search"> <?php print render($page['search_box']); ?> </div>
         <?php endif; ?>
         <?php if ($main_menu): ?>
-        <button class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-nav-collapse"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+		<a class="navbar-brand" href="#">Brand</a>
+	  </div>
         <?php if ($primary_nav || !empty($page['navigation'])): ?>
-        <div class="nav-collapse collapse">
-          <nav id="main-nav" role="navigation">
+        <div class="collapse navbar-collapse" id="menu-nav-collapse">
             <?php if (($primary_nav) && empty($page['navigation'])): ?>
-            <?php print render($primary_nav); ?> 
+<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('class' => array('nav', 'navbar-nav'), ), 'heading' => array('text' => t('Main menu'), 'level' => 'h2', 'class' => array('element-invisible'), ), )); ?>
             <!-- /#primary-menu -->
             <?php endif; ?>
             <?php if (!empty($page['navigation'])): ?>
             <?php print render($page['navigation']); ?>
             <?php endif; ?>
-          </nav>
 		</div>
         <?php endif; ?>
         <?php endif; ?>
         <?php if ($main_menu): ?>
       </div>
+
       <?php endif; ?>
-    </div>
+    </nav>
   </div>
 </div>
 <!-- /#main-menu -->
